@@ -2,714 +2,935 @@
 <html lang="ar" dir="rtl">
 <head>
   <meta charset="UTF-8" />
-  <title>مولّد توقيع البريد الإلكتروني - T&S Brand Hub</title>
+  <title>T&S Brand Hub – Email Signature</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <!-- خط عام للواجهة -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-  <!-- html2canvas لتحويل التوقيع إلى PNG -->
-  <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
-
   <style>
     :root {
-      --bg-main: #0a0f21;
-      --bg-alt: #050814;
-      --primary-1: #0d295c;
-      --primary-2: #8c40ff;
-      --primary-3: #3b1745;
-      --accent-1: #05adad;
-      --accent-2: #f0474a;
-      --text-main: #f5f5ff;
-      --text-muted: #c0c4d6;
-      --border-soft: rgba(255, 255, 255, 0.06);
-      --glass-bg: rgba(13, 18, 40, 0.88);
-      --glass-card-bg: rgba(16, 22, 48, 0.9);
+      --bg-main: radial-gradient(circle at top, #1a2748 0, #050716 45%, #02030a 100%);
+      --card-glass: rgba(17, 24, 48, 0.85);
+      --border-glass: rgba(255, 255, 255, 0.08);
+      --accent: #05adad;
+      --accent-soft: #32c3c3;
+      --purple-main: #7c2c82;
+      --purple-soft: #b56fd3;
+      --text-main: #e5e7ff;
+      --text-muted: #9da3c4;
+      --stroke-subtle: rgba(255, 255, 255, 0.06);
+      --shadow-soft: 0 26px 60px rgba(0, 0, 0, 0.55);
+      --radius-lg: 26px;
+      --radius-xl: 999px;
+      --transition-fast: 0.2s ease-out;
     }
 
     * {
       box-sizing: border-box;
+      margin: 0;
+      padding: 0;
     }
 
     body {
-      margin: 0;
-      padding: 0;
-      font-family: "Cairo", system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-      background:
-        radial-gradient(circle at top left, #3b1745 0, #0a0f21 40%, #050814 100%);
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg-main);
       color: var(--text-main);
       min-height: 100vh;
+      padding: 18px 18px 40px;
     }
 
-    .page-shell {
-      max-width: 1200px;
-      margin: 24px auto 40px;
-      padding: 16px;
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    .brand-header {
+    .top-shell {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    /* Top bar */
+    .top-bar {
       display: flex;
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 18px;
-      flex-wrap: wrap;
-    }
-
-    .brand-left {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-    }
-
-    .brand-logo {
-      width: 52px;
-      height: auto;
-      border-radius: 16px;
-      background: rgba(0, 0, 0, 0.2);
-      padding: 6px 8px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    .brand-logo img {
-      max-height: 40px;
-      display: block;
-    }
-
-    .brand-title-block h1 {
-      font-size: 20px;
-      margin: 0 0 2px;
-    }
-
-    .brand-title-block .subtitle {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .brand-right {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      flex-wrap: wrap;
-      justify-content: flex-end;
-    }
-
-    .lang-toggle {
-      display: inline-flex;
+      padding: 10px 18px;
       border-radius: 999px;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      overflow: hidden;
-      background: rgba(15, 23, 42, 0.7);
-      backdrop-filter: blur(10px);
+      background: linear-gradient(120deg, rgba(13, 19, 40, 0.96), rgba(9, 13, 32, 0.96));
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+      margin-bottom: 12px;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 16px 8px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: radial-gradient(circle at top left, rgba(50, 196, 196, 0.28), rgba(19, 26, 54, 0.9));
+      font-size: 13px;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: background var(--transition-fast), transform var(--transition-fast), box-shadow var(--transition-fast);
+      white-space: nowrap;
+    }
+
+    .back-btn span.icon {
+      font-size: 13px;
+      transform: translateY(0.5px);
+    }
+
+    .back-btn:hover {
+      background: radial-gradient(circle at top left, rgba(50, 196, 196, 0.38), rgba(19, 26, 54, 1));
+      transform: translateY(-1px);
+      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.6);
+    }
+
+    .lang-switch {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px;
+      border-radius: 999px;
+      background: rgba(10, 16, 36, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.12);
     }
 
     .lang-btn {
       border: none;
+      cursor: pointer;
+      font-size: 11px;
+      padding: 5px 12px;
+      border-radius: 999px;
       background: transparent;
       color: var(--text-muted);
-      font-size: 11px;
-      padding: 6px 10px;
-      cursor: pointer;
-      min-width: 70px;
+      min-width: 40px;
+      text-align: center;
+      transition: background var(--transition-fast), color var(--transition-fast), transform var(--transition-fast);
     }
 
     .lang-btn.active {
-      background: radial-gradient(circle at top, rgba(5, 173, 173, 0.25), rgba(15, 23, 42, 0.9));
-      color: var(--accent-1);
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #001019;
       font-weight: 600;
+      transform: translateY(-0.5px);
     }
 
-    .glass-shell {
-      margin-top: 12px;
-      border-radius: 22px;
-      background: linear-gradient(
-          135deg,
-          rgba(148, 163, 184, 0.06),
-          rgba(15, 23, 42, 0.6)
-        ),
-        var(--glass-bg);
-      border: 1px solid var(--border-soft);
-      box-shadow:
-        0 24px 60px rgba(0, 0, 0, 0.75),
-        0 0 0 1px rgba(15, 23, 42, 0.8);
-      padding: 20px 22px 24px;
-      backdrop-filter: blur(18px);
-    }
-
-    .glass-shell-header {
+    /* Page header with logo */
+    .page-header {
+      max-width: 1180px;
+      margin: 0 auto 18px;
+      padding: 14px 20px 16px;
+      border-radius: var(--radius-lg);
+      background: linear-gradient(135deg, rgba(26, 34, 71, 0.95), rgba(8, 9, 24, 0.98));
+      border: 1px solid var(--border-glass);
+      box-shadow: var(--shadow-soft);
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 12px;
-      margin-bottom: 16px;
-      flex-wrap: wrap;
+      gap: 16px;
     }
 
-    .shell-title {
+    .page-header-main {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      min-width: 0;
+    }
+
+    .hub-logo-wrap {
+      width: 64px;
+      height: 64px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 10%, rgba(255, 255, 255, 0.16), rgba(9, 13, 32, 0.9));
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      flex-shrink: 0;
+    }
+
+    .hub-logo {
+      width: 44px;
+      height: 44px;
+      display: block;
+    }
+
+    .page-titles h1 {
       font-size: 16px;
       font-weight: 600;
+      color: #ffffff;
+      margin-bottom: 2px;
+      white-space: nowrap;
     }
 
-    .shell-hint {
+    .page-titles p {
       font-size: 12px;
       color: var(--text-muted);
-      margin-top: 2px;
+      max-width: 420px;
     }
 
+    .update-badge {
+      font-size: 11px;
+      color: var(--text-muted);
+      padding: 6px 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: linear-gradient(135deg, rgba(2, 6, 23, 0.9), rgba(8, 13, 35, 0.95));
+      white-space: nowrap;
+    }
+
+    .update-badge span.dot {
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      border-radius: 999px;
+      background: var(--accent);
+      margin: 0 6px;
+    }
+
+    /* Main layout */
     .layout {
-      margin-top: 16px;
+      max-width: 1180px;
+      margin: 0 auto;
       display: grid;
-      grid-template-columns: minmax(280px, 1.1fr) minmax(320px, 1.1fr);
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
       gap: 18px;
       align-items: flex-start;
     }
 
-    .card {
-      background: linear-gradient(
-        135deg,
-        rgba(31, 41, 79, 0.90),
-        rgba(15, 23, 42, 0.96)
-      );
-      border-radius: 18px;
-      padding: 16px 16px 18px;
-      border: 1px solid rgba(148, 163, 184, 0.45);
-      box-shadow: 0 18px 45px rgba(15, 23, 42, 0.9);
+    .glass-card {
+      background: var(--card-glass);
+      border-radius: var(--radius-lg);
+      border: 1px solid var(--border-glass);
+      box-shadow: var(--shadow-soft);
+      padding: 18px 18px 18px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .glass-card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top left, rgba(50, 196, 196, 0.12), transparent 55%),
+                  radial-gradient(circle at bottom right, rgba(180, 96, 210, 0.12), transparent 60%);
+      opacity: 0.9;
+      pointer-events: none;
+    }
+
+    .glass-inner {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-title-row {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 8px;
+      margin-bottom: 10px;
     }
 
     .card-title {
-      font-size: 15px;
+      font-size: 14px;
       font-weight: 600;
-      margin-bottom: 10px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .card-title span.dot {
-      width: 7px;
-      height: 7px;
-      border-radius: 999px;
-      background: var(--accent-1);
+      color: #ffffff;
     }
 
     .card-sub {
       font-size: 11px;
       color: var(--text-muted);
-      margin-bottom: 10px;
     }
 
+    /* Signature preview wrapper */
+    .preview-wrapper {
+      margin-top: 8px;
+      padding: 14px;
+      border-radius: 20px;
+      background: rgba(4, 7, 20, 0.8);
+      border: 1px solid var(--stroke-subtle);
+    }
+
+    .signature-preview {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px 18px;
+      box-shadow: 0 10px 26px rgba(2, 6, 23, 0.4);
+      max-width: 580px;
+      overflow-x: auto;
+    }
+
+    .preview-note {
+      margin-top: 8px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* Form */
     .form-grid {
       display: grid;
       grid-template-columns: 1fr;
       gap: 10px;
+      margin-top: 8px;
     }
 
-    .form-group {
+    .field {
       display: flex;
       flex-direction: column;
       gap: 4px;
     }
 
-    label {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    input[type="text"],
-    input[type="email"],
-    input[type="tel"] {
-      width: 100%;
-      border-radius: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.6);
-      padding: 7px 9px;
-      font-size: 13px;
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--text-main);
-    }
-
-    input::placeholder {
-      color: rgba(148, 163, 184, 0.7);
-    }
-
-    input:focus {
-      outline: none;
-      border-color: var(--accent-1);
-      box-shadow: 0 0 0 1px rgba(5, 173, 173, 0.6);
-    }
-
-    .field-note {
+    .field label {
       font-size: 11px;
       color: var(--text-muted);
     }
 
-    .buttons {
-      margin-top: 14px;
+    .field input {
+      border-radius: 999px;
+      border: 1px solid rgba(148, 163, 207, 0.4);
+      background: rgba(15, 23, 42, 0.7);
+      padding: 8px 12px;
+      font-size: 12px;
+      color: var(--text-main);
+      outline: none;
+      transition: border var(--transition-fast), box-shadow var(--transition-fast), background var(--transition-fast);
+    }
+
+    .field input::placeholder {
+      color: rgba(148, 163, 207, 0.6);
+    }
+
+    .field input:focus {
+      border-color: var(--accent-soft);
+      background: rgba(15, 23, 42, 0.95);
+      box-shadow: 0 0 0 1px rgba(50, 196, 196, 0.4);
+    }
+
+    .static-info {
+      margin-top: 6px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .static-info span.value {
+      color: var(--accent-soft);
+    }
+
+    /* Buttons */
+    .btn-row {
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
-      justify-content: flex-start;
+      margin-top: 12px;
     }
 
-    .btn {
-      border: none;
+    .btn-primary,
+    .btn-secondary {
       border-radius: 999px;
+      font-size: 12px;
       padding: 7px 14px;
-      font-size: 13px;
+      border: none;
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 6px;
       white-space: nowrap;
-      transition: transform 0.08s ease, box-shadow 0.08s ease, background 0.1s ease;
-    }
-
-    .btn span.icon {
-      font-size: 15px;
-      line-height: 1;
+      transition: background var(--transition-fast), box-shadow var(--transition-fast), transform var(--transition-fast), color var(--transition-fast);
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent-1), var(--primary-2));
-      color: #0f172a;
-      box-shadow: 0 10px 30px rgba(5, 173, 173, 0.6);
+      background: linear-gradient(135deg, var(--accent), var(--accent-soft));
+      color: #001019;
+      font-weight: 600;
+      box-shadow: 0 12px 24px rgba(6, 182, 212, 0.35);
     }
 
-    .btn-outline {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--accent-1);
-      border: 1px solid rgba(5, 173, 173, 0.7);
-    }
-
-    .btn:hover {
+    .btn-primary:hover {
       transform: translateY(-1px);
-      box-shadow: 0 14px 30px rgba(15, 23, 42, 0.8);
+      box-shadow: 0 16px 32px rgba(6, 182, 212, 0.5);
     }
 
-    .preview-note {
-      font-size: 11px;
+    .btn-secondary {
+      background: rgba(15, 23, 42, 0.9);
       color: var(--text-muted);
+      border: 1px solid rgba(148, 163, 207, 0.5);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(15, 23, 42, 1);
+      color: #e5e7ff;
+    }
+
+    .btn-icon {
+      font-size: 13px;
+    }
+
+    .status-text {
       margin-top: 8px;
-    }
-
-    /* معاينة التوقيع */
-    #signature-wrapper {
-      direction: ltr;
-      text-align: left;
-    }
-
-    #signature-card {
-      background: radial-gradient(circle at top left, rgba(60, 25, 109, 0.65), rgba(15, 23, 42, 0.95));
-      border-radius: 16px;
-      padding: 10px;
-      border: 1px solid rgba(148, 163, 184, 0.5);
-      box-shadow: inset 0 0 0 1px rgba(15, 23, 42, 0.9);
-    }
-
-    #signature {
-      background: #ffffff;
-      padding: 10px 12px;
-      border-radius: 10px;
-    }
-
-    /* الفوتر */
-    .page-footer {
-      margin-top: 18px;
       font-size: 11px;
       color: var(--text-muted);
+      min-height: 14px;
+    }
+
+    .status-text.success {
+      color: #4ade80;
+    }
+
+    .status-text.error {
+      color: #f97373;
+    }
+
+    /* Instructions */
+    .instructions {
+      margin-top: 14px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(148, 163, 207, 0.4);
+    }
+
+    .instructions h3 {
+      font-size: 12px;
+      margin-bottom: 6px;
+      color: #ffffff;
+    }
+
+    .instructions ol {
+      padding-left: 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 10px;
+    }
+
+    .instructions ol li + li {
+      margin-top: 3px;
+    }
+
+    /* Made with love pill */
+    .love-strip {
       display: flex;
       justify-content: center;
     }
 
-    .footer-row {
-      padding-top: 6px;
-      border-top: 1px solid rgba(148, 163, 184, 0.3);
-      max-width: 1200px;
-      width: 100%;
-      text-align: center;
-      margin: 0 auto;
-      margin-top: 8px;
+    .love-pill {
+      padding: 5px 14px 6px;
+      border-radius: 999px;
+      font-size: 11px;
+      color: var(--text-muted);
+      background: rgba(8, 14, 34, 0.9);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      backdrop-filter: blur(14px);
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
     }
 
+    .love-pill span.heart {
+      font-size: 11px;
+    }
+
+    /* Global footer */
+    .page-footer {
+      max-width: 1180px;
+      margin: 18px auto 0;
+      font-size: 10px;
+      color: var(--text-muted);
+      text-align: center;
+      opacity: 0.9;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      align-items: center;
+    }
+
+    /* RTL adjustments */
+    [dir="rtl"] .top-bar {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .back-btn {
+      padding-inline: 16px 14px;
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .back-btn span.icon {
+      transform: scaleX(-1) translateY(0.5px);
+    }
+
+    [dir="rtl"] .page-header {
+      flex-direction: row-reverse;
+    }
+
+    [dir="rtl"] .page-header-main {
+      flex-direction: row-reverse;
+      text-align: right;
+    }
+
+    [dir="rtl"] .page-titles p {
+      text-align: right;
+    }
+
+    [dir="rtl"] .update-badge {
+      text-align: left;
+    }
+
+    [dir="rtl"] .layout {
+      direction: rtl;
+    }
+
+    [dir="rtl"] .field {
+      text-align: right;
+    }
+
+    [dir="rtl"] .field input {
+      text-align: right;
+    }
+
+    [dir="rtl"] .btn-row {
+      justify-content: flex-end;
+    }
+
+    [dir="rtl"] .instructions ol {
+      padding-left: 0;
+      padding-right: 18px;
+    }
+
+    /* Language toggles visibility */
+    .tr-ar { display: inline; }
+    .tr-en { display: none; }
+
+    [data-lang="en"] .tr-en { display: inline; }
+    [data-lang="en"] .tr-ar { display: none; }
+
+    /* Responsive */
     @media (max-width: 900px) {
       .layout {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
-    @media (max-width: 600px) {
-      .glass-shell {
-        padding: 16px 14px 18px;
+    @media (max-width: 640px) {
+      body {
+        padding: 14px 10px 26px;
+      }
+      .page-header {
+        flex-direction: column;
+        align-items: flex-end;
+      }
+      [dir="ltr"] .page-header {
+        align-items: flex-start;
+      }
+      .page-header-main {
+        width: 100%;
+      }
+      .page-titles h1 {
+        white-space: normal;
       }
     }
   </style>
 </head>
-<body>
-  <div class="page-shell">
-    <!-- رأس الصفحة -->
-    <header class="brand-header">
-      <div class="brand-left">
-        <div class="brand-logo">
-          <!-- شعار من GitHub -->
-          <img src="https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg" alt="T&S Logo">
+<body data-lang="ar">
+  <div class="top-shell">
+    <!-- Top bar -->
+    <div class="top-bar">
+      <a class="back-btn" href="https://toolsandsolution.github.io/ts-brand-hub/#logos">
+        <span class="icon">↩︎</span>
+        <span class="tr-en">Back to Brand Hub</span>
+        <span class="tr-ar">العودة إلى مركز الهوية</span>
+      </a>
+
+      <div class="lang-switch">
+        <button class="lang-btn" data-switch="en">EN</button>
+        <button class="lang-btn active" data-switch="ar">AR</button>
+      </div>
+    </div>
+
+    <!-- Page header -->
+    <header class="page-header">
+      <div class="page-header-main">
+        <div class="hub-logo-wrap">
+          <img
+            src="https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg"
+            alt="T&S Logo"
+            class="hub-logo"
+          />
         </div>
-        <div class="brand-title-block">
-          <h1 data-i18n="pageTitle">مولّد توقيع البريد الإلكتروني - T&amp;S Brand Hub</h1>
-          <div class="subtitle" data-i18n="pageSubtitle">
-            مولّد توقيع بريد إلكتروني لموظفي T&amp;S (إنجليزي فقط)
-          </div>
+        <div class="page-titles">
+          <h1 class="tr-en">T&amp;S Brand Hub – Email Signature</h1>
+          <h1 class="tr-ar">مركز هوية T&amp;S – توقيع البريد الإلكتروني</h1>
+          <p class="tr-en">
+            Official Outlook email signature generator for all T&amp;S employees.
+          </p>
+          <p class="tr-ar">
+            أداة إنشاء توقيع البريد الإلكتروني الرسمي في Outlook لموظفي T&amp;S.
+          </p>
         </div>
       </div>
-      <div class="brand-right">
-        <div class="lang-toggle">
-          <button type="button" class="lang-btn active" data-lang="ar">العربية</button>
-          <button type="button" class="lang-btn" data-lang="en">English</button>
-        </div>
+      <div class="update-badge">
+        <span class="tr-en">Last update:</span>
+        <span class="tr-ar">آخر تحديث:</span>
+        <span>01 / 12 / 2025</span>
+        <span class="dot"></span>
+        <span class="tr-en">Brand identity v.2025</span>
+        <span class="tr-ar">إصدار الهوية 2025</span>
       </div>
     </header>
 
-    <section class="glass-shell">
-      <div class="glass-shell-header">
-        <div>
-          <div class="shell-title" data-i18n="shellTitle">
-            Email Signature – English Only
+    <!-- Main layout -->
+    <main class="layout">
+      <!-- Preview column -->
+      <section class="glass-card">
+        <div class="glass-inner">
+          <div class="card-title-row">
+            <div>
+              <div class="card-title tr-en">Live Preview</div>
+              <div class="card-title tr-ar">المعاينة المباشرة</div>
+              <div class="card-sub tr-en">This is exactly how your signature will appear in Outlook.</div>
+              <div class="card-sub tr-ar">هكذا سيظهر توقيعك تمامًا داخل برنامج Outlook.</div>
+            </div>
           </div>
-          <div class="shell-hint" data-i18n="shellHint">
-            أدخل بياناتك بالإنجليزية، ثم حمّل التوقيع كملف HTML أو كصورة PNG جاهزة للإدراج في إعدادات البريد.
+
+          <div class="preview-wrapper">
+            <div id="signature-preview" class="signature-preview" dir="ltr">
+              <!-- signature HTML injected by JS -->
+            </div>
+            <p class="preview-note tr-en">
+              Signature is generated in <strong>English only</strong>. You can still use the Arabic interface to fill your details.
+            </p>
+            <p class="preview-note tr-ar">
+              يتم إنشاء التوقيع <strong>باللغة الإنجليزية فقط</strong>، ويمكنك استخدام الواجهة العربية لكتابة بياناتك.
+            </p>
           </div>
         </div>
-      </div>
+      </section>
 
-      <div class="layout">
-        <!-- لوحة الإدخال -->
-        <div class="card">
-          <div class="card-title">
-            <span class="dot"></span>
-            <span data-i18n="cardTitle">بيانات الموظف Employee Details</span>
-          </div>
-          <div class="card-sub" data-i18n="cardSub">
-            يتم تحديث المعاينة مباشرة عند الكتابة. التوقيع النهائي سيكون باللغة الإنجليزية فقط.
+      <!-- Form / instructions column -->
+      <section class="glass-card">
+        <div class="glass-inner">
+          <div class="card-title-row">
+            <div>
+              <div class="card-title tr-en">Employee details</div>
+              <div class="card-title tr-ar">بيانات الموظف</div>
+              <div class="card-sub tr-en">Fill the fields below, then copy or download your signature.</div>
+              <div class="card-sub tr-ar">عبّئ الحقول أدناه، ثم انسخ أو حمِّل توقيعك الجاهز.</div>
+            </div>
           </div>
 
           <div class="form-grid">
-            <div class="form-group">
-              <label for="fullNameEnInput" data-i18n="labelNameEn">Employee Name (English)</label>
-              <input type="text" id="fullNameEnInput" value="Rayyan Al-Dohian" placeholder="e.g. Rayyan Al-Dohian">
+            <div class="field">
+              <label for="fullName">
+                <span class="tr-en">Full name (English)</span>
+                <span class="tr-ar">الاسم الكامل (إنجليزي)</span>
+              </label>
+              <input
+                id="fullName"
+                type="text"
+                placeholder="Rayyan Al-Dohian"
+                value="Rayyan Al-Dohian"
+              />
             </div>
 
-            <div class="form-group">
-              <label for="jobTitleEnInput" data-i18n="labelTitleEn">Job Title (English)</label>
-              <input type="text" id="jobTitleEnInput" value="Marketing Specialist" placeholder="e.g. Marketing Specialist">
+            <div class="field">
+              <label for="jobTitle">
+                <span class="tr-en">Job title (English)</span>
+                <span class="tr-ar">المسمى الوظيفي (إنجليزي)</span>
+              </label>
+              <input
+                id="jobTitle"
+                type="text"
+                placeholder="Marketing Specialist"
+                value="Marketing Specialist"
+              />
             </div>
 
-            <div class="form-group">
-              <label for="emailInput" data-i18n="labelEmail">Email (T&amp;S)</label>
-              <input type="email" id="emailInput" value="Rayyan.Aldohian@ts.sa" placeholder="name@ts.sa">
+            <div class="field">
+              <label for="email">
+                <span class="tr-en">Email address</span>
+                <span class="tr-ar">البريد الإلكتروني</span>
+              </label>
+              <input
+                id="email"
+                type="email"
+                placeholder="name@ts.sa"
+                value="Rayyan.Aldohian@ts.sa"
+              />
             </div>
 
-            <div class="form-group">
-              <label for="mobileInput" data-i18n="labelMobile">Mobile (with country code)</label>
-              <input type="tel" id="mobileInput" value="+966-558113135" placeholder="+966-5XXXXXXXX">
-            </div>
-
-            <div class="form-group">
-              <label data-i18n="labelCompanyPhone">Company Phone (fixed)</label>
-              <input type="text" value="+966-9200-17730" disabled>
-              <div class="field-note" data-i18n="noteCompanyPhone">لا يمكن تعديله من قبل الموظف.</div>
-            </div>
-
-            <div class="form-group">
-              <label data-i18n="labelAddress">Address (fixed)</label>
-              <input type="text" value="King Abdullah Financial District, Riyadh, Saudi Arabia" disabled>
+            <div class="field">
+              <label for="mobile">
+                <span class="tr-en">Mobile number</span>
+                <span class="tr-ar">رقم الجوال</span>
+              </label>
+              <input
+                id="mobile"
+                type="text"
+                placeholder="+966-5XXXXXXXX"
+                value="+966-558113135"
+              />
             </div>
           </div>
 
-          <div class="buttons">
-            <button type="button" class="btn btn-primary" id="downloadHtmlBtn">
-              <span class="icon">⬇️</span>
-              <span data-i18n="btnHtml">تحميل كتوقيع HTML</span>
+          <div class="static-info">
+            <div>
+              <span class="tr-en">Company number:</span>
+              <span class="tr-ar">رقم الشركة الموحد:</span>
+              <span class="value">+966-9200-17730</span>
+            </div>
+            <div>
+              <span class="tr-en">Office address:</span>
+              <span class="tr-ar">عنوان المكتب:</span>
+              <span class="value">
+                3.05 King Abdullah Financial District, Riyadh, Saudi Arabia
+              </span>
+            </div>
+          </div>
+
+          <div class="btn-row">
+            <button type="button" class="btn-primary" id="btn-copy">
+              <span class="btn-icon">📋</span>
+              <span class="tr-en">Copy signature</span>
+              <span class="tr-ar">نسخ التوقيع</span>
             </button>
-            <button type="button" class="btn btn-outline" id="downloadPngBtn">
-              <span class="icon">🖼️</span>
-              <span data-i18n="btnPng">تحميل كصورة PNG</span>
+
+            <button type="button" class="btn-secondary" id="btn-download">
+              <span class="btn-icon">⬇️</span>
+              <span class="tr-en">Download HTML file</span>
+              <span class="tr-ar">تحميل ملف HTML</span>
             </button>
           </div>
 
-          <div class="preview-note" data-i18n="previewNote">
-            نصيحة: بعد التحميل، جرّب التوقيع على إرسالية تجريبية قبل تعميمه.
+          <div id="status" class="status-text"></div>
+
+          <div class="instructions">
+            <h3 class="tr-en">How to add the signature in Outlook (Desktop)</h3>
+            <ol class="tr-en">
+              <li>Click <strong>Copy signature</strong> above.</li>
+              <li>Open Outlook &gt; <strong>File</strong> &gt; <strong>Options</strong> &gt; <strong>Mail</strong> &gt; <strong>Signatures...</strong>.</li>
+              <li>Create a new signature and choose it as the default for your T&amp;S email account.</li>
+              <li>Click inside the editor box and press <strong>Ctrl + V</strong> to paste the signature.</li>
+              <li>Click <strong>OK</strong> to save, then compose a new email to check the result.</li>
+            </ol>
+
+            <h3 class="tr-ar">طريقة إضافة التوقيع في برنامج Outlook (سطح المكتب)</h3>
+            <ol class="tr-ar">
+              <li>اضغط على زر <strong>نسخ التوقيع</strong> بالأعلى.</li>
+              <li>افتح Outlook ثم اذهب إلى <strong>ملف File</strong> &gt; <strong>خيارات Options</strong> &gt; <strong>البريد Mail</strong> &gt; <strong>التواقيع Signatures...</strong>.</li>
+              <li>أنشئ توقيعًا جديدًا واختره كتوقيع افتراضي لبريدك في T&amp;S.</li>
+              <li>اضغط داخل مربع التوقيع ثم استخدم الاختصار <strong>Ctrl + V</strong> للصق التوقيع.</li>
+              <li>اضغط <strong>OK</strong> للحفظ، ثم أنشئ رسالة جديدة للتأكد من ظهور التوقيع بشكل صحيح.</li>
+            </ol>
           </div>
         </div>
+      </section>
+    </main>
 
-        <!-- معاينة التوقيع -->
-        <div class="card">
-          <div class="card-title">
-            <span class="dot" style="background: var(--accent-2);"></span>
-            <span data-i18n="previewTitle">معاينة التوقيع Signature Preview</span>
-          </div>
-          <div class="card-sub" data-i18n="previewSub">
-            هذه هي النسخة النهائية التي سيتم حفظها كـ HTML أو تحويلها إلى صورة PNG.
-          </div>
-
-          <div id="signature-wrapper">
-            <div id="signature-card">
-              <!-- التوقيع الفعلي (إنجليزي فقط) -->
-              <div id="signature">
-                <table cellpadding="0" cellspacing="0" border="0" style="border-collapse:collapse; font-family: Arial, sans-serif; font-size: 12px; color:#111827;">
-                  <tr>
-                    <!-- شعار T&S -->
-                    <td style="padding:0 16px 0 0; vertical-align:middle;">
-                      <img src="https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-light.svg" alt="T&S" style="height:60px; display:block;">
-                    </td>
-
-                    <!-- نص التوقيع -->
-                    <td style="padding:0; vertical-align:middle;">
-                      <div id="sig-name-en"
-                        style="font-size:13px; font-weight:700; color:#6b1d83; margin-bottom:1px;">
-                        Rayyan Al-Dohian
-                      </div>
-
-                      <div id="sig-title-en"
-                        style="font-size:12px; color:#4b5563; margin-bottom:6px;">
-                        Marketing Specialist
-                      </div>
-
-                      <!-- البريد -->
-                      <div style="margin-bottom:2px;">
-                        <span style="color:#06b6d4; font-size:12px; margin-right:4px;">✉</span>
-                        <a id="sig-email-link" href="mailto:Rayyan.Aldohian@ts.sa"
-                          style="color:#0d295c; text-decoration:none;">
-                          <span id="sig-email-text">Rayyan.Aldohian@ts.sa</span>
-                        </a>
-                      </div>
-
-                      <!-- رقم الشركة -->
-                      <div style="margin-bottom:2px;">
-                        <span style="color:#06b6d4; font-size:12px; margin-right:4px;">☎</span>
-                        <span id="sig-company-phone" style="color:#111827;">+966-9200-17730</span>
-                      </div>
-
-                      <!-- الجوال -->
-                      <div style="margin-bottom:2px;">
-                        <span style="color:#06b6d4; font-size:12px; margin-right:4px;">📱</span>
-                        <a id="sig-mobile-link" href="tel:+966-558113135"
-                          style="color:#111827; text-decoration:none;">
-                          <span id="sig-mobile-text">+966-558113135</span>
-                        </a>
-                      </div>
-
-                      <!-- العنوان إنجليزي -->
-                      <div id="sig-address-row-en" style="margin-top:4px;">
-                        <span style="color:#06b6d4; font-size:12px; margin-right:4px;">📍</span>
-                        <a id="sig-address-link-en"
-                          href="https://maps.google.com/?q=King%20Abdullah%20Financial%20District,%20Riyadh,%20Saudi%20Arabia"
-                          style="color:#0d295c; text-decoration:none;">
-                          <span id="sig-address-text-en">
-                            King Abdullah Financial District, Riyadh, Saudi Arabia
-                          </span>
-                        </a>
-                      </div>
-                    </td>
-                  </tr>
-                </table>
-              </div>
-            </div>
-          </div>
-
+    <!-- Footer with love pill -->
+    <div class="page-footer">
+      <div class="love-strip">
+        <div class="love-pill">
+          <span class="heart">❤️</span>
+          <span class="tr-en">Made with love at T&amp;S</span>
+          <span class="tr-ar">صُنع بــالحب في T&amp;S</span>
         </div>
       </div>
-    </section>
-
-    <!-- فوتر -->
-    <footer class="page-footer">
-      <div class="footer-row" data-i18n="footerText">
-        صُنع بـ❤️ في T&amp;S – الإصدار الأول
+      <div>
+        <span class="tr-en">T&amp;S Brand Hub – Internal use only.</span>
+        <span class="tr-ar">مركز هوية T&amp;S – للاستخدام الداخلي فقط.</span>
       </div>
-    </footer>
+    </div>
   </div>
 
   <script>
     const COMPANY_PHONE = "+966-9200-17730";
-    const COMPANY_ADDRESS_EN = "King Abdullah Financial District, Riyadh, Saudi Arabia";
-    const COMPANY_ADDRESS_MAP =
-      "https://maps.google.com/?q=King%20Abdullah%20Financial%20District,%20Riyadh,%20Saudi%20Arabia";
+    const COMPANY_ADDRESS = "3.05 King Abdullah Financial District, Riyadh, Saudi Arabia";
+    const LOGO_DARK =
+      "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.svg";
 
-    const fullNameEnInput = document.getElementById("fullNameEnInput");
-    const jobTitleEnInput = document.getElementById("jobTitleEnInput");
-    const emailInput = document.getElementById("emailInput");
-    const mobileInput = document.getElementById("mobileInput");
+    const nameInput = document.getElementById("fullName");
+    const titleInput = document.getElementById("jobTitle");
+    const emailInput = document.getElementById("email");
+    const mobileInput = document.getElementById("mobile");
+    const preview = document.getElementById("signature-preview");
+    const statusEl = document.getElementById("status");
 
-    const sigNameEn = document.getElementById("sig-name-en");
-    const sigTitleEn = document.getElementById("sig-title-en");
-    const sigEmailText = document.getElementById("sig-email-text");
-    const sigEmailLink = document.getElementById("sig-email-link");
-    const sigCompanyPhone = document.getElementById("sig-company-phone");
-    const sigMobileText = document.getElementById("sig-mobile-text");
-    const sigMobileLink = document.getElementById("sig-mobile-link");
-    const sigAddressTextEn = document.getElementById("sig-address-text-en");
-    const sigAddressLinkEn = document.getElementById("sig-address-link-en");
-
-    function sanitize(value) {
-      return value || "";
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;");
     }
 
-    function updateSignature() {
-      const nameEn = sanitize(fullNameEnInput.value);
-      const titleEn = sanitize(jobTitleEnInput.value);
-      const email = sanitize(emailInput.value);
-      const mobile = sanitize(mobileInput.value);
+    function generateSignatureHTML() {
+      const name = escapeHtml(nameInput.value.trim() || "Your Name");
+      const title = escapeHtml(titleInput.value.trim() || "Your Job Title");
+      const email = escapeHtml(emailInput.value.trim() || "name@ts.sa");
+      const mobile = escapeHtml(mobileInput.value.trim() || "+966-5XXXXXXXX");
 
-      sigNameEn.textContent = nameEn || "Employee Name";
-      sigTitleEn.textContent = titleEn || "Job Title";
-
-      sigEmailText.textContent = email || "name@ts.sa";
-      sigEmailLink.href = email ? "mailto:" + email : "mailto:";
-
-      sigCompanyPhone.textContent = COMPANY_PHONE;
-
-      sigMobileText.textContent = mobile || "+966-5XXXXXXXX";
-      sigMobileLink.href = mobile ? "tel:" + mobile.replace(/\s+/g, "") : "tel:";
-
-      sigAddressTextEn.textContent = COMPANY_ADDRESS_EN;
-      sigAddressLinkEn.href = COMPANY_ADDRESS_MAP;
+      return `
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#363a68;">
+  <tr>
+    <td style="padding:0 18px 0 0; border-right:1px solid #e5e7eb; vertical-align:middle;">
+      <img src="${LOGO_DARK}" alt="T&amp;S" style="display:block; height:104px; width:auto;">
+    </td>
+    <td style="padding:0 0 0 18px; vertical-align:middle;">
+      <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#363a68;">
+        <tr>
+          <td style="font-size:14px; font-weight:bold; color:#7c2c82; padding-bottom:2px;">
+            ${name}
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:11px; color:#555555; padding-bottom:6px;">
+            ${title}
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:11px; color:#555555; padding-bottom:3px;">
+            <span style="color:#05adad; font-size:12px; padding-right:4px;">✉️</span>
+            <a href="mailto:${email}" style="color:#0056b3; text-decoration:none;">
+              ${email}
+            </a>
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:11px; color:#555555; padding-bottom:3px;">
+            <span style="color:#05adad; font-size:12px; padding-right:4px;">☎️</span>
+            ${COMPANY_PHONE}
+            &nbsp;&nbsp;
+            <span style="color:#05adad; font-size:12px; padding-right:4px;">📱</span>
+            ${mobile}
+          </td>
+        </tr>
+        <tr>
+          <td style="font-size:11px; color:#555555; padding-top:3px;">
+            <span style="color:#e11d48; font-size:12px; padding-right:4px;">📍</span>
+            <a href="https://maps.app.goo.gl/" style="color:#0056b3; text-decoration:none;">
+              ${COMPANY_ADDRESS}
+            </a>
+          </td>
+        </tr>
+      </table>
+    </td>
+  </tr>
+</table>`;
     }
 
-    fullNameEnInput.addEventListener("input", updateSignature);
-    jobTitleEnInput.addEventListener("input", updateSignature);
-    emailInput.addEventListener("input", updateSignature);
-    mobileInput.addEventListener("input", updateSignature);
+    function renderPreview() {
+      const html = generateSignatureHTML();
+      preview.innerHTML = html;
+    }
 
-    // أول تحديث
-    updateSignature();
+    function setStatus(message, type) {
+      statusEl.textContent = message || "";
+      statusEl.className = "status-text";
+      if (type) statusEl.classList.add(type);
+    }
 
-    // ترجمات واجهة الصفحة
-    const translations = {
-      ar: {
-        pageTitle: "مولّد توقيع البريد الإلكتروني - T&S Brand Hub",
-        pageSubtitle: "مولّد توقيع بريد إلكتروني لموظفي T&S (إنجليزي فقط)",
-        shellTitle: "Email Signature – English Only",
-        shellHint: "أدخل بياناتك بالإنجليزية، ثم حمّل التوقيع كملف HTML أو كصورة PNG جاهزة للإدراج في إعدادات البريد.",
-        cardTitle: "بيانات الموظف Employee Details",
-        cardSub: "يتم تحديث المعاينة مباشرة عند الكتابة. التوقيع النهائي سيكون باللغة الإنجليزية فقط.",
-        labelNameEn: "اسم الموظف (بالإنجليزي)",
-        labelTitleEn: "المسمى الوظيفي (بالإنجليزي)",
-        labelEmail: "البريد الإلكتروني (T&S)",
-        labelMobile: "رقم الجوال (مع المفتاح الدولي)",
-        labelCompanyPhone: "رقم الشركة (ثابت)",
-        noteCompanyPhone: "لا يمكن تعديله من قبل الموظف.",
-        labelAddress: "العنوان (ثابت)",
-        btnHtml: "تحميل كتوقيع HTML",
-        btnPng: "تحميل كصورة PNG",
-        previewNote: "نصيحة: بعد التحميل، جرّب التوقيع على إرسالية تجريبية قبل تعميمه.",
-        previewTitle: "معاينة التوقيع Signature Preview",
-        previewSub: "هذه هي النسخة النهائية التي سيتم حفظها كـ HTML أو تحويلها إلى صورة PNG.",
-        footerText: "صُنع بـ❤️ في T&S – الإصدار الأول",
-        placeholderNameEn: "مثال: Rayyan Al-Dohian",
-        placeholderTitleEn: "مثال: Marketing Specialist",
-        placeholderEmail: "name@ts.sa",
-        placeholderMobile: "+966-5XXXXXXXX"
-      },
-      en: {
-        pageTitle: "T&S Brand Hub – Email Signature Generator",
-        pageSubtitle: "English-only email signature generator for T&S employees",
-        shellTitle: "Email Signature – English Only",
-        shellHint: "Fill in your English details, then download the signature as HTML or PNG.",
-        cardTitle: "Employee Details",
-        cardSub: "Preview updates live as you type. The final signature will be in English only.",
-        labelNameEn: "Employee Name (English)",
-        labelTitleEn: "Job Title (English)",
-        labelEmail: "Email (T&S)",
-        labelMobile: "Mobile (with country code)",
-        labelCompanyPhone: "Company Phone (fixed)",
-        noteCompanyPhone: "This value cannot be edited by employees.",
-        labelAddress: "Address (fixed)",
-        btnHtml: "Download as HTML",
-        btnPng: "Download as PNG",
-        previewNote: "Tip: send yourself a test email before rolling out the signature.",
-        previewTitle: "Signature Preview",
-        previewSub: "This is the final version that will be saved as HTML or converted to PNG.",
-        footerText: "Made with ❤️ at T&S – Version 1.0",
-        placeholderNameEn: "e.g. Rayyan Al-Dohian",
-        placeholderTitleEn: "e.g. Marketing Specialist",
-        placeholderEmail: "name@ts.sa",
-        placeholderMobile: "+966-5XXXXXXXX"
+    async function copySignature() {
+      const html = generateSignatureHTML();
+
+      try {
+        if (navigator.clipboard && window.ClipboardItem) {
+          const blob = new Blob([html], { type: "text/html" });
+          const data = [new ClipboardItem({ "text/html": blob })];
+          await navigator.clipboard.write(data);
+        } else if (navigator.clipboard && navigator.clipboard.writeText) {
+          await navigator.clipboard.writeText(html);
+        } else {
+          throw new Error("Clipboard API not available");
+        }
+
+        setStatus(
+          document.body.dataset.lang === "ar"
+            ? "تم نسخ التوقيع. إذا لم يظهر بالشكل الصحيح، يمكنك تحديد التوقيع من المعاينة ونسخه يدويًا."
+            : "Signature copied. If the format looks off, select it from the preview and copy manually.",
+          "success"
+        );
+      } catch (e) {
+        try {
+          const range = document.createRange();
+          range.selectNodeContents(preview);
+          const selection = window.getSelection();
+          selection.removeAllRanges();
+          selection.addRange(range);
+          document.execCommand("copy");
+          setStatus(
+            document.body.dataset.lang === "ar"
+              ? "تم تحديد التوقيع. اضغط Ctrl + C لنسخه ثم الصقه في Outlook."
+              : "Signature selected. Press Ctrl + C to copy, then paste it into Outlook.",
+            "success"
+          );
+        } catch (err) {
+          setStatus(
+            document.body.dataset.lang === "ar"
+              ? "لم يتم النسخ تلقائيًا، يرجى تحديد التوقيع من المعاينة ونسخه يدويًا."
+              : "Automatic copy is not available. Please select the signature in the preview and copy it manually.",
+            "error"
+          );
+        }
       }
-    };
-
-    function setLanguageUI(lang) {
-      const t = translations[lang];
-
-      document.documentElement.lang = lang === "ar" ? "ar" : "en";
-      document.documentElement.dir = lang === "ar" ? "rtl" : "ltr";
-
-      document.querySelectorAll("[data-i18n]").forEach(el => {
-        const key = el.getAttribute("data-i18n");
-        if (t[key]) el.textContent = t[key];
-      });
-
-      fullNameEnInput.placeholder = t.placeholderNameEn;
-      jobTitleEnInput.placeholder = t.placeholderTitleEn;
-      emailInput.placeholder = t.placeholderEmail;
-      mobileInput.placeholder = t.placeholderMobile;
-
-      document.querySelectorAll(".lang-btn[data-lang]").forEach(btn => {
-        btn.classList.toggle("active", btn.getAttribute("data-lang") === lang);
-      });
     }
 
-    // سويتش اللغة للواجهة
-    document.querySelectorAll(".lang-btn[data-lang]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const lang = btn.getAttribute("data-lang");
-        setLanguageUI(lang);
-      });
-    });
-
-    // اللغة الافتراضية: عربي
-    setLanguageUI("ar");
-
-    // تحميل HTML
-    document.getElementById("downloadHtmlBtn").addEventListener("click", function () {
-      const signatureOuterHtml = document.getElementById("signature").outerHTML;
-
-      const htmlFileContent =
-        "<!DOCTYPE html>\n<html>\n<head>\n<meta charset=\"UTF-8\">\n<title>T&S Email Signature</title>\n</head>\n<body>\n" +
-        signatureOuterHtml +
-        "\n</body>\n</html>";
-
-      const blob = new Blob([htmlFileContent], { type: "text/html;charset=utf-8" });
+    function downloadHTML() {
+      const html = generateSignatureHTML();
+      const blob = new Blob(
+        [
+          "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>T&S Email Signature</title></head><body>",
+          html,
+          "</body></html>",
+        ],
+        { type: "text/html" }
+      );
       const url = URL.createObjectURL(blob);
       const a = document.createElement("a");
       a.href = url;
-      a.download = "ts-email-signature-en.html";
+      a.download = "ts-email-signature.html";
       document.body.appendChild(a);
       a.click();
       document.body.removeChild(a);
       URL.revokeObjectURL(url);
-    });
 
-    // تحميل PNG
-    document.getElementById("downloadPngBtn").addEventListener("click", function () {
-      const signatureElement = document.getElementById("signature");
+      setStatus(
+        document.body.dataset.lang === "ar"
+          ? "تم تحميل ملف HTML. يمكنك فتحه ونسخ التوقيع منه إذا رغبت."
+          : "HTML file downloaded. You can open it and copy the signature from there if needed.",
+        "success"
+      );
+    }
 
-      html2canvas(signatureElement, {
-        backgroundColor: "#ffffff",
-        scale: 2
-      }).then(function (canvas) {
-        canvas.toBlob(function (blob) {
-          const url = URL.createObjectURL(blob);
-          const a = document.createElement("a");
-          a.href = url;
-          a.download = "ts-email-signature-en.png";
-          document.body.appendChild(a);
-          a.click();
-          document.body.removeChild(a);
-          URL.revokeObjectURL(url);
-        });
+    // Language toggle
+    function setLanguage(lang) {
+      const isArabic = lang === "ar";
+      document.documentElement.lang = isArabic ? "ar" : "en";
+      document.documentElement.dir = isArabic ? "rtl" : "ltr";
+      document.body.dataset.lang = isArabic ? "ar" : "en";
+
+      document.querySelectorAll(".lang-btn").forEach((btn) => {
+        btn.classList.toggle("active", btn.dataset.switch === lang);
+      });
+    }
+
+    document.querySelectorAll(".lang-btn").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        setLanguage(btn.dataset.switch);
       });
     });
+
+    // Inputs listeners
+    [nameInput, titleInput, emailInput, mobileInput].forEach((input) => {
+      input.addEventListener("input", () => {
+        renderPreview();
+        setStatus("");
+      });
+    });
+
+    document.getElementById("btn-copy").addEventListener("click", copySignature);
+    document.getElementById("btn-download").addEventListener("click", downloadHTML);
+
+    // Initial render
+    renderPreview();
   </script>
 </body>
 </html>
