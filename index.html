@@ -160,14 +160,15 @@
       font-size: 16px;
       font-weight: 600;
       color: #ffffff;
-      margin-bottom: 2px;
-      white-space: nowrap;
+      margin-bottom: 4px;
+      white-space: normal;
     }
 
     .page-titles p {
       font-size: 12px;
       color: var(--text-muted);
       max-width: 420px;
+      margin: 0;
     }
 
     .update-badge {
@@ -226,9 +227,9 @@
 
     .card-title-row {
       display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 8px;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
       margin-bottom: 10px;
     }
 
@@ -241,6 +242,7 @@
     .card-sub {
       font-size: 11px;
       color: var(--text-muted);
+      margin: 0;
     }
 
     /* Signature preview wrapper */
@@ -817,7 +819,9 @@
     const COMPANY_PHONE = "+966-9200-17730";
     const COMPANY_ADDRESS = "3.05 King Abdullah Financial District, Riyadh, Saudi Arabia";
     const LOGO_DARK =
-      "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/refs/heads/main/assets/logos/ts-logo-dark.svg";
+      "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/e3a82917b73e4cedec0495a619778a946a14b498/assets/logos/ts-logo-dark.svg";
+    const LOGO_DARK_PNG =
+      "https://raw.githubusercontent.com/toolsAndsolution/ts-brand-hub/e3a82917b73e4cedec0495a619778a946a14b498/assets/logos/ts-logo-dark.png";
 
     const nameInput = document.getElementById("fullName");
     const titleInput = document.getElementById("jobTitle");
@@ -834,7 +838,7 @@
         .replace(/"/g, "&quot;");
     }
 
-    function generateSignatureHTML() {
+    function generateSignatureHTML(usePngForEmail = false) {
       const name = escapeHtml(nameInput.value.trim() || "Your Name");
       const title = escapeHtml(titleInput.value.trim() || "Your Job Title");
       const email = escapeHtml(emailInput.value.trim() || "name@ts.sa");
@@ -843,8 +847,8 @@
       return `
 <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#363a68;">
   <tr>
-    <td style="padding:6px 18px 6px 0; border-right:1px solid #e5e7eb; vertical-align:middle;">
-      <img src="${LOGO_DARK}" alt="T&amp;S" style="display:block; width:140px; height:auto; max-width:140px;">
+    <td style="padding:0 18px 0 0; border-right:1px solid #e5e7eb; vertical-align:middle;">
+      <img src="${usePngForEmail ? LOGO_DARK_PNG : LOGO_DARK}" alt="T&amp;S" style="display:block; height:80px; width:auto;">
     </td>
     <td style="padding:0 0 0 18px; vertical-align:middle;">
       <table cellpadding="0" cellspacing="0" border="0" style="font-family:Arial, Helvetica, sans-serif; font-size:12px; color:#363a68;">
@@ -901,7 +905,7 @@
     }
 
     async function copySignature() {
-      const html = generateSignatureHTML();
+      const html = generateSignatureHTML(true);
 
       try {
         if (navigator.clipboard && window.ClipboardItem) {
@@ -916,8 +920,8 @@
 
         setStatus(
           document.body.dataset.lang === "ar"
-            ? "تم نسخ التوقيع. إذا لم يظهر بالشكل الصحيح، يمكنك تحديد التوقيع من المعاينة ونسخه يدويًا."
-            : "Signature copied. If the format looks off, select it from the preview and copy manually.",
+            ? "تم نسخ التوقيع بنجاح."
+            : "Signature copied successfully.",
           "success"
         );
       } catch (e) {
@@ -946,7 +950,7 @@
     }
 
     function downloadHTML() {
-      const html = generateSignatureHTML();
+      const html = generateSignatureHTML(true);
       const blob = new Blob(
         [
           "<!DOCTYPE html><html><head><meta charset='UTF-8'><title>T&S Email Signature</title></head><body>",
